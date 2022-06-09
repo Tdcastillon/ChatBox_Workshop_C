@@ -32,10 +32,16 @@ typedef struct server_s {
 
     int *fd_array;
 
+    int client_socket;
     int socket;
     int fdmax;
     int port;
 } server_t;
+
+typedef struct fd_set {
+    unsigned int fd_count;
+    int fd_array[FD_SETSIZE];
+}fd_set_t;
 
 int error_handling(int ac, char *port);
 char *get_hostname(void);

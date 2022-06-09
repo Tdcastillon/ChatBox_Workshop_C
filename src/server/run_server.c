@@ -7,7 +7,15 @@
 
 #include "server.h"
 
+// run the server with multiple sockets
+
 void run_server(server_t *server)
 {
-    return;
+    while(1) {
+        server->client_socket = accept(server->socket, (struct sockaddr *)&server->addr, sizeof(server->addr));
+        if (server->client_socket == -1)
+            continue;
+        if (accept(server->socket, (struct sockaddr *)&server->addr, sizeof(server->addr)) == -1)
+            continue;
+    }
 }
